@@ -1,6 +1,6 @@
 def creazaobiect(id, nume, descriere, pret_achizitie, locatie):
     '''
-
+    creeaza o lista ce reprezinta un obiect
     :param id:
     :param nume:
     :param descriere:
@@ -8,55 +8,50 @@ def creazaobiect(id, nume, descriere, pret_achizitie, locatie):
     :param locatie:
     :return:
     '''
-    return {
-        'id':id,
-        'nume':nume,
-        'descriere':descriere,
-        'pret_achizitie':pret_achizitie,
-        'locatie':locatie,
-    }
+    return [id, nume, descriere, pret_achizitie, locatie]
 
 
-def getid(obiect):
+
+def getid(lst):
     '''
 
     :param obiect:
     :return:
     '''
-    return obiect['id']
+    return lst[0]
 
 
-def getnume(obiect):
+def getnume(lst):
     '''
 
     :param obiect:
     :return:
     '''
-    return obiect['nume']
+    return lst[1]
 
 
-def getdescriere(obiect):
+def getdescriere(lst):
     '''
 
     :param obiect:
     :return:
     '''
-    return obiect['descriere']
+    return lst[2]
 
 
-def getpret_achizitie(obiect):
+def getpret_achizitie(lst):
     '''
 
     :param obiect:
     :return:
     '''
-    return obiect['pret_achizitie']
+    return lst[3]
 
 
-def getlocatie(obiect):
+def getlocatie(lst):
     '''
 
     :param obiect:
     :return:
     '''
-    return obiect['locatie']
+    return lst[4]

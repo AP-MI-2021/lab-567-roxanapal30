@@ -5,7 +5,7 @@ from Tests.all_tests import all_tests
 def main():
     all_tests()
     while True:
-        print("1. Adaugare inventar.")
+        print("1. Meniu CRUD.")
         print("2. Stergere inventar.")
         print("3. Iesire")
         op=input(int("Alege optiunea"))
@@ -21,4 +21,6 @@ def main():
             return sterge_obiect(id)
         else:
             break
+
+main()
 
