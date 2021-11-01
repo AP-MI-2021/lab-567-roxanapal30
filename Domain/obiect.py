@@ -9,13 +9,13 @@ def creeazaobiect(id,nume,descriere,pret,locatie):
     :return:
     '''
 
-    return{
-        "id":id,
-        "nume":nume,
-        "descriere":descriere,
-        "pret":pret,
-        "locatie":locatie,
-    }
+    return[
+        id,
+        nume,
+        descriere,
+        pret,
+        locatie,
+    ]
 
 def getid(obiect):
     '''
@@ -23,19 +23,19 @@ def getid(obiect):
     :param obiect:
     :return:
     '''
-    return obiect["id"]
+    return obiect[0]
 
 def getnume(obiect):
-    return obiect["nume"]
+    return obiect[1]
 
 def getdescriere(obiect):
-    return obiect["descriere"]
+    return obiect[2]
 
 def getpret(obiect):
-    return obiect["pret"]
+    return obiect[3]
 
 def getlocatie(obiect):
-    return obiect["locatie"]
+    return obiect[4]
 
 def toString(obiect):
     return "Id:{}, Nume:{},Descriere:{},Pret:{},Locatie:{}".format(
