@@ -1,5 +1,6 @@
 from Tests.TestCRUD import testadaugaobiect, teststergereobiect, testmodificaobiect
 from Tests.TestDomain import testobiect
+from Tests.TestMutare import testmutare
 
 
 def TestAll():
@@ -7,3 +8,4 @@ def TestAll():
     testadaugaobiect()
     teststergereobiect()
     testmodificaobiect()
+    testmutare()

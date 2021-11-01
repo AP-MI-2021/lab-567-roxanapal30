@@ -1,13 +1,15 @@
 from Domain.obiect import toString
 from Logic.CRUD import stergeobiect, modificaobiect, adaugaobiect
+from Logic.Mutare import verificarelocatieexistenta, mutare_locatie
 
 
 def printMenu():
     print("1.Adaugare obiect")
     print("2.Stergere obiect")
     print("3.Modificare obiect")
-    print("4.Arata obiectele")
-    print("5.Iesire")
+    print("4.Mutare dintr-o locatie in alta")
+    print("6.Arata obiectele")
+    print("7.Iesire")
 
 
 def UIadaugareobiect(lista):
@@ -48,6 +50,19 @@ def UImodificaobiect(lista):
                 break
     return modificaobiect(id, nume, descriere, pret, locatie)
 
+def UImutarelocatie(lista):
+    locatieinitiala=input("Dati locatia din care mutati obiectele: ")
+    if not verificarelocatieexistenta(locatieinitiala,lista):
+        locatieinitiala=input("Dati locatia din care mutati obiectele, locatia trebuie sa fie una deja existenta in "
+                              "lista: ")
+    locatiefinala=input("Dati locatia in care mutati obiectele: ")
+    if len(locatiefinala) != 4:
+        while True:
+            locatiefinala = input("Dati noua locatie, locatia trebuie sa aiba 4 caractere: ")
+            if len(locatiefinala) == 4:
+                break
+    return mutare_locatie(locatieinitiala,locatiefinala,lista)
+
 
 def showAll(lista):
     for obiect in lista:
@@ -64,9 +79,11 @@ def runMenu(lista):
             lista = UIstregereobiect(lista)
         elif op == 3:
             lista = UImodificaobiect(lista)
-        elif op == 4:
+        elif op==4:
+            lista=UImutarelocatie(lista)
+        elif op == 6:
             showAll(lista)
-        elif op == 5:
+        elif op == 7:
             break
         else:
             print("Optiune gresita, reincercati")
