@@ -1,5 +1,6 @@
 from Domain.obiect import toString
 from Logic.CRUD import stergeobiect, modificaobiect, adaugaobiect
+from Logic.Concatenarestring import concatenare
 from Logic.Mutare import verificarelocatieexistenta, mutare_locatie
 
 
@@ -8,6 +9,7 @@ def printMenu():
     print("2.Stergere obiect")
     print("3.Modificare obiect")
     print("4.Mutare dintr-o locatie in alta")
+    print("5. Concatenarea unui string citit la toate descrierile obiectelor cu prețul mai mare decât o valoare citită")
     print("6.Arata obiectele")
     print("7.Iesire")
 
@@ -63,6 +65,11 @@ def UImutarelocatie(lista):
                 break
     return mutare_locatie(locatieinitiala,locatiefinala,lista)
 
+def UIconcatenare(lista):
+    sir=input("Dati sir pentru concatenare: ")
+    suma=int(input("Dati suma de la care vreti sa concatenati: "))
+    return concatenare(sir,suma,lista)
+
 
 def showAll(lista):
     for obiect in lista:
@@ -81,6 +88,8 @@ def runMenu(lista):
             lista = UImodificaobiect(lista)
         elif op==4:
             lista=UImutarelocatie(lista)
+        elif op==5:
+            lista=UIconcatenare(lista)
         elif op == 6:
             showAll(lista)
         elif op == 7:
