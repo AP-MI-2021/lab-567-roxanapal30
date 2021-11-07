@@ -1,3 +1,4 @@
+
 from Tests.TestAll import TestAll
 from UI.command_line_console import command
 from UI.console import runMenu

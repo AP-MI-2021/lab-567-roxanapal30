@@ -2,6 +2,9 @@ from Domain.obiect import toString
 from Logic.CRUD import adaugaobiect, stergeobiect, modificaobiect
 from Logic.Concatenarestring import concatenare
 from Logic.Mutare import mutare_locatie, verificarelocatieexistenta
+from Logic.Celmaimare import celmaimare
+from Logic.Ordonareaobiectelor import ordonarepret
+from Logic.Sumepreturi import sumepreturi
 
 
 def command(lista):
@@ -11,10 +14,10 @@ def command(lista):
     for s in comenzi:
         subcomenzi = s.split(",")
         if subcomenzi[0] == "add":
-            id = subcomenzi[1]
+            id = int(subcomenzi[1])
             nume = subcomenzi[2]
             descriere = subcomenzi[3]
-            pret = subcomenzi[4]
+            pret = float(subcomenzi[4])
             locatie = subcomenzi[5]
             if descriere is None:
                 print("Imposibil, descrierea nu poate fi null")
@@ -24,13 +27,13 @@ def command(lista):
                 break
             lista = adaugaobiect(id, nume, descriere, pret, locatie, lista)
         elif subcomenzi[0] == "delete":
-            id = subcomenzi[1]
+            id = int(subcomenzi[1])
             lista = stergeobiect(id, lista)
         elif subcomenzi[0] == "modify":
-            id = subcomenzi[1]
+            id =int(subcomenzi[1])
             nume = subcomenzi[2]
             descriere = subcomenzi[3]
-            pret = subcomenzi[4]
+            pret = float(subcomenzi[4])
             locatie = subcomenzi[5]
             if descriere is None:
                 print("Imposibil, descrierea nu poate fi null")
@@ -51,13 +54,29 @@ def command(lista):
             lista = mutare_locatie(locatieinitiala, locatiefinala, lista)
         elif subcomenzi[0] == "concat":
             sir = subcomenzi[1]
-            suma = subcomenzi[2]
+            suma = float(subcomenzi[2])
             lista = concatenare(sir, suma, lista)
+        elif subcomenzi[0] == "biggest":
+            dex={}
+            dex=celmaimare(lista)
+            if dex is None:
+                print("Nu exista inca obiecte in lista")
+            else:
+                print(dex)
+        elif subcomenzi[0]=="ordonare":
+            lista=ordonarepret(lista)
+        elif subcomenzi[0]=="show":
+            dex = {}
+            dex = sumepreturi(lista)
+            if dex is None:
+                print("Nu exista inca obiecte in lista")
+            else:
+                print(dex)
         elif subcomenzi[0] == "showall":
             for obiect in lista:
                 print(toString(obiect))
-        else:
-            print("Eroare")
+        elif subcomenzi[0] !='':
+            print("nu exista comanda aleasa")
     return lista
 
 
@@ -68,5 +87,8 @@ def printMenu():
     print("delete,id;")
     print("modify,id,nume,descriere,pret,locatie;")
     print("move,locatieinitiala,locatiefinala;")
+    print("biggest;")
     print("concat,sir,suma;")
+    print("ordonare;")
+    print("show all prices for every location")
     print("showall;")
