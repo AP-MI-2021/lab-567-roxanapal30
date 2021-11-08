@@ -23,16 +23,6 @@ def concatenare(sir,pret,lista,listaundo,listaredo):
             listanoua.append(obiectnou)
     return listanoua
 
-'''
-Functia verifica daca suma data de utilizator exista in lista 
-param:lista
-param:suma(float)
-'''
-def sumaexistenta(lista,suma):
-    for obiect in lista:
-        if getpret(obiect)==suma:
-            return True
-    return False
 
 
 

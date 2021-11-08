@@ -1,6 +1,6 @@
 from Domain.obiect import toString, getid
 from Logic.CRUD import adaugaobiect, stergeobiect, modificaobiect
-from Logic.Concatenarestring import concatenare, sumaexistenta
+from Logic.Concatenarestring import concatenare
 from Logic.Mutare import mutare_locatie, verificarelocatieexistenta
 from Logic.Celmaimare import celmaimare
 from Logic.Ordonareaobiectelor import ordonarepret
@@ -64,9 +64,6 @@ def command(lista):
         elif subcomenzi[0] == "concat":
             sir = subcomenzi[1]
             suma = float(subcomenzi[2])
-            if not sumaexistenta(lista, suma):
-                print("Imposibil,suma trebuie sa existe in lista")
-                break
             lista = concatenare(sir, suma, lista)
         elif subcomenzi[0] == "biggest":
             dex={}
