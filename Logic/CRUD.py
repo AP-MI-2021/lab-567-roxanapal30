@@ -13,11 +13,13 @@ param:listaredo
 returnare:listanoua
 '''
 
-def adaugaobiect(id, nume, descriere, pret, locatie, lista,listaundo,listaredo):
+
+def adaugaobiect(id, nume, descriere, pret, locatie, lista, listaundo, listaredo):
     obiect = creeazaobiect(id, nume, descriere, pret, locatie)
     listaundo.append(lista)
     listaredo.clear()
     return lista + [obiect]
+
 
 '''
 Functia sterge un obiect din lista formata dupa id-ul dat de utilizator
@@ -28,7 +30,8 @@ param:listaredo
 returnare:listanoua
 '''
 
-def stergeobiect(id, lista,listaundo,listaredo):
+
+def stergeobiect(id, lista, listaundo, listaredo):
     listaundo.append(lista)
     listaredo.clear()
     return [obiect for obiect in lista if getid(obiect) != id]
@@ -46,7 +49,9 @@ param:listaundo
 param:listaredo
 returnare:listanoua
 '''
-def modificaobiect(id, nume, descriere, pret, locatie, lista,listaundo,listaredo):
+
+
+def modificaobiect(id, nume, descriere, pret, locatie, lista, listaundo, listaredo):
     listanoua = []
     listaundo.append(lista)
     listaredo.clear()
@@ -57,6 +62,14 @@ def modificaobiect(id, nume, descriere, pret, locatie, lista,listaundo,listaredo
         else:
             listanoua.append(obiect)
     return listanoua
+
+
+'''
+Functia gaseste obiectul din lista cu id-ul cerut si il returneaza
+param:id(int)
+param:lista
+return:obiect
+'''
 
 
 def getbyid(id, lista):
