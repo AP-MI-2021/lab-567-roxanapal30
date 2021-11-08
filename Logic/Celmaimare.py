@@ -1,5 +1,9 @@
 from Domain.obiect import getpret, getlocatie
-
+'''
+Functia gaseste cea mai mare suma pentru fiecare locatie existenta in lista de obiecte
+param:lista
+returnare:dex
+'''
 
 def celmaimare(lista):
     dex={}

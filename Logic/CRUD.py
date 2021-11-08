@@ -1,5 +1,17 @@
 from Domain.obiect import creeazaobiect, getid
 
+'''
+Functia adauga un obiect in lista formata
+param:id(int)
+param:nume(string)
+param:descriere(string)
+param:pret(float)
+param:locatie(string)
+param:lista
+param:listaundo
+param:listaredo
+returnare:listanoua
+'''
 
 def adaugaobiect(id, nume, descriere, pret, locatie, lista,listaundo,listaredo):
     obiect = creeazaobiect(id, nume, descriere, pret, locatie)
@@ -7,6 +19,14 @@ def adaugaobiect(id, nume, descriere, pret, locatie, lista,listaundo,listaredo):
     listaredo.clear()
     return lista + [obiect]
 
+'''
+Functia sterge un obiect din lista formata dupa id-ul dat de utilizator
+param:id(int)
+param:lista
+param:listaundo
+param:listaredo
+returnare:listanoua
+'''
 
 def stergeobiect(id, lista,listaundo,listaredo):
     listaundo.append(lista)
@@ -14,6 +34,18 @@ def stergeobiect(id, lista,listaundo,listaredo):
     return [obiect for obiect in lista if getid(obiect) != id]
 
 
+'''
+Functia modifica un obiect dupa id-ul dat de utilizator din lista formata
+param:id(int)
+param:nume(string)
+param:descriere(string)
+param:pret(float)
+param:locatie(string)
+param:lista
+param:listaundo
+param:listaredo
+returnare:listanoua
+'''
 def modificaobiect(id, nume, descriere, pret, locatie, lista,listaundo,listaredo):
     listanoua = []
     listaundo.append(lista)

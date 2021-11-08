@@ -15,4 +15,3 @@ def testundosiredo():
     lista=redo(listaundo,listaredo,lista)
     assert len(lista)==2
     assert getid(lista[1])==2
-    

@@ -1,7 +1,11 @@
-from os import remove
 
 from Domain.obiect import getpret, getlocatie
 
+'''
+Functia aduna toate sumele din lista de la fiecare locatie existenta
+param:lista
+returnare:dex
+'''
 def sumepreturi(lista):
     dex={}
     for obiect in lista:
