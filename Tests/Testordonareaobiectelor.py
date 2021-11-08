@@ -10,7 +10,7 @@ def testordonareobiecte():
     lista.append(obiect)
     obiect = creeazaobiect(3, "paine", "maro", 30, "cana")
     lista.append(obiect)
-    listanoua=ordonarepret(lista)
+    listanoua=ordonarepret(lista,[],[])
     assert getpret(listanoua[0])==20
     assert getpret(listanoua[1]) == 30
     assert getpret(listanoua[2]) == 40

@@ -10,7 +10,7 @@ def testmutare():
     lista.append(obiect)
     obiect=creeazaobiect(3,"patura","grea",200,"casa")
     lista.append(obiect)
-    lista= mutare_locatie("raft","care",lista)
+    lista= mutare_locatie("raft","care",lista,[],[])
     assert getlocatie(lista[0])=="care"
     assert getlocatie(lista[1])=="care"
     assert getlocatie(lista[2])=="casa"

@@ -4,7 +4,7 @@ from Logic.CRUD import adaugaobiect, stergeobiect, getbyid, modificaobiect
 
 def testadaugaobiect():
     lista = []
-    lista = adaugaobiect(1, "perna", "alba", 20, "casa", lista)
+    lista = adaugaobiect(1, "perna", "alba", 20, "casa", lista,[],[])
 
     assert len(lista) == 1
     assert getid(getbyid(1, lista)) == 1
@@ -16,9 +16,9 @@ def testadaugaobiect():
 
 def teststergereobiect():
     lista = []
-    lista = adaugaobiect(1, "perna", "alba", 20, "casa", lista)
-    lista = adaugaobiect(2, "casa", "mare", 500, "aici", lista)
-    lista = stergeobiect(1, lista)
+    lista = adaugaobiect(1, "perna", "alba", 20, "casa", lista,[],[])
+    lista = adaugaobiect(2, "casa", "mare", 500, "aici", lista,[],[])
+    lista = stergeobiect(1, lista,[],[])
     assert len(lista) == 1
     assert getbyid(1, lista) is None
     assert getbyid(2, lista) is not None
@@ -26,10 +26,10 @@ def teststergereobiect():
 
 def testmodificaobiect():
     lista = []
-    lista = adaugaobiect(1, "perna", "alba", 20, "casa", lista)
-    lista = adaugaobiect(2, "casa", "mare", 500, "aici", lista)
+    lista = adaugaobiect(1, "perna", "alba", 20, "casa", lista,[],[])
+    lista = adaugaobiect(2, "casa", "mare", 500, "aici", lista,[],[])
 
-    lista = modificaobiect(1, "lampa", "mare", 30, "masa", lista)
+    lista = modificaobiect(1, "lampa", "mare", 30, "masa", lista,[],[])
     obiectnou = getbyid(1, lista)
     assert getid(obiectnou) == 1
     assert getnume(obiectnou) == "lampa"

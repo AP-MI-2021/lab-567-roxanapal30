@@ -1,8 +1,10 @@
 from Domain.obiect import getlocatie, creeazaobiect, getid, getnume, getdescriere, getpret
 
 
-def mutare_locatie(locatiainitiala,locatiafinala,lista):
+def mutare_locatie(locatiainitiala,locatiafinala,lista,listaundo,listaredo):
     listanoua=[]
+    listaundo.append(lista)
+    listaredo.clear()
     for obiect in lista:
         if getlocatie(obiect)!=locatiainitiala:
             listanoua.append(obiect)
