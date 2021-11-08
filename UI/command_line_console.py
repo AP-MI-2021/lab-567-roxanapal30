@@ -1,6 +1,6 @@
-from Domain.obiect import toString
+from Domain.obiect import toString, getid
 from Logic.CRUD import adaugaobiect, stergeobiect, modificaobiect
-from Logic.Concatenarestring import concatenare
+from Logic.Concatenarestring import concatenare, sumaexistenta
 from Logic.Mutare import mutare_locatie, verificarelocatieexistenta
 from Logic.Celmaimare import celmaimare
 from Logic.Ordonareaobiectelor import ordonarepret
@@ -22,12 +22,18 @@ def command(lista):
             if descriere is None:
                 print("Imposibil, descrierea nu poate fi null")
                 break
+            if pret<0:
+                print("Imposibil,pretul trebuie sa fie pozitiv")
+                break
             if len(locatie) != 4:
                 print("Imposibil, locatia trebuie sa aiba 4 caractere")
                 break
             lista = adaugaobiect(id, nume, descriere, pret, locatie, lista)
         elif subcomenzi[0] == "delete":
             id = int(subcomenzi[1])
+            if id > getid(lista[len(lista) - 1]):
+                print("Imposibil,id-ul trebuie sa existe in lista")
+                break
             lista = stergeobiect(id, lista)
         elif subcomenzi[0] == "modify":
             id =int(subcomenzi[1])
@@ -37,6 +43,9 @@ def command(lista):
             locatie = subcomenzi[5]
             if descriere is None:
                 print("Imposibil, descrierea nu poate fi null")
+                break
+            if pret<0:
+                print("Imposibil,pretul trebuie sa fie pozitiv")
                 break
             if len(locatie) != 4:
                 print("Imposibil, locatia trebuie sa aiba 4 caractere")
@@ -55,6 +64,9 @@ def command(lista):
         elif subcomenzi[0] == "concat":
             sir = subcomenzi[1]
             suma = float(subcomenzi[2])
+            if not sumaexistenta(lista, suma):
+                print("Imposibil,suma trebuie sa existe in lista")
+                break
             lista = concatenare(sir, suma, lista)
         elif subcomenzi[0] == "biggest":
             dex={}

@@ -1,8 +1,8 @@
 
 
-from Domain.obiect import toString
+from Domain.obiect import toString, getid
 from Logic.CRUD import stergeobiect, modificaobiect, adaugaobiect
-from Logic.Concatenarestring import concatenare
+from Logic.Concatenarestring import concatenare, sumaexistenta
 from Logic.Mutare import verificarelocatieexistenta, mutare_locatie
 from Logic.Celmaimare import celmaimare
 from Logic.Ordonareaobiectelor import ordonarepret
@@ -29,10 +29,13 @@ def UIadaugareobiect(lista,listaundo,listaredo):
     id = int(input("Dati id-ul: "))
     nume = input("Dati numele: ")
     while True:
-        descriere = input("Dati descriere: ")
+        descriere = input("Dati descriere,ea nu poate fi nula: ")
         if len(descriere) > 0:
             break
-    pret = float(input("Dati pretul: "))
+    while True:
+        pret = float(input("Dati pretul,acesta trebuie sa fie pozitiv: "))
+        if pret>=0:
+            break
     locatie = input("Dati locatia: ")
     if len(locatie) != 4:
         while True:
@@ -44,6 +47,11 @@ def UIadaugareobiect(lista,listaundo,listaredo):
 
 def UIstregereobiect(lista,listaundo,listaredo):
     id = int(input("Dati id-ul pentru obiectul pe care vreti sa il stergeti: "))
+    if id> getid(lista[len(lista)-1]):
+        while True:
+            id = int(input("Dati id-ul pentru obiectul pe care vreti sa il stergeti,acesta trebuie sa existe in lista: "))
+            if id <= getid(lista[len(lista)-1]):
+                break
     return stergeobiect(id, lista,listaundo,listaredo)
 
 
@@ -51,10 +59,15 @@ def UImodificaobiect(lista,listaundo,listaredo):
     id = int(input("Dati id-ul pentru obiectul pe care vreti sa il modificati: "))
     nume = input("Dati noul nume: ")
     while True:
-        descriere = input("Dati noua descriere: ")
+        descriere = input("Dati noua descriere,ea nu poate fi nenula: ")
         if len(descriere) > 0:
             break
-    pret = float(input("Dati noul pret: "))
+    pret = float(input("Dati noul pret,acesta trebuie sa fie pozitiv: "))
+    if pret<0:
+        while True:
+            pret = float(input("Dati noul pret,acesta trebuie sa fie pozitiv: "))
+            if pret>=0:
+                break
     locatie = input("Dati noua locatie: ")
     if len(locatie) != 4:
         while True:
@@ -66,8 +79,11 @@ def UImodificaobiect(lista,listaundo,listaredo):
 def UImutarelocatie(lista,listaundo,listaredo):
     locatieinitiala=input("Dati locatia din care mutati obiectele: ")
     if not verificarelocatieexistenta(locatieinitiala,lista):
-        locatieinitiala=input("Dati locatia din care mutati obiectele, locatia trebuie sa fie una deja existenta in "
+        while True:
+            locatieinitiala=input("Dati locatia din care mutati obiectele, locatia trebuie sa fie una deja existenta in "
                               "lista: ")
+            if verificarelocatieexistenta(locatieinitiala,lista):
+                break
     locatiefinala=input("Dati locatia in care mutati obiectele: ")
     if len(locatiefinala) != 4:
         while True:
@@ -79,6 +95,11 @@ def UImutarelocatie(lista,listaundo,listaredo):
 def UIconcatenare(lista,listaundo,listaredo):
     sir=input("Dati sir pentru concatenare: ")
     suma=int(input("Dati suma de la care vreti sa concatenati: "))
+    if not sumaexistenta(lista, suma):
+        while True:
+            suma = int(input("Dati suma de la care vreti sa concatenati,suma trebuie sa existe: "))
+            if sumaexistenta(lista,suma):
+                break
     return concatenare(sir,suma,lista,listaundo,listaredo)
 
 def UIcelmaimare(lista):
@@ -91,8 +112,11 @@ def UISumepreturi(lista):
     return sumepreturi(lista)
 
 def showAll(lista):
-    for obiect in lista:
-        print(toString(obiect))
+    if len(lista)==0:
+        print("Nu exista obiecte in lista")
+    else:
+        for obiect in lista:
+            print(toString(obiect))
 
 
 def runMenu(lista,listaundo,listaredo):

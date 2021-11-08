@@ -14,4 +14,11 @@ def concatenare(sir,pret,lista,listaundo,listaredo):
             listanoua.append(obiectnou)
     return listanoua
 
+def sumaexistenta(lista,suma):
+    for obiect in lista:
+        if getpret(obiect)==suma:
+            return True
+    return False
+
+
 
