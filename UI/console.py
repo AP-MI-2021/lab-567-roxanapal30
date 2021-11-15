@@ -26,88 +26,108 @@ def printMenu():
 
 
 def UIadaugareobiect(lista,listaundo,listaredo):
-    while True:
-        id = input("Dati id-ul: ")
-        if len(id)>0:
-            if int(id)>0:
-                break
-    id=int(id)
-    nume = input("Dati numele: ")
-    while True:
-        descriere = input("Dati descriere,ea nu poate fi nula: ")
-        if len(descriere) > 0:
-            break
-    while True:
-        pret = input("Dati pretul,acesta trebuie sa fie pozitiv: ")
-        if len(pret) > 0:
-            if float(pret) >= 0:
-                break
-    pret=float(pret)
-    locatie = input("Dati locatia: ")
-    if len(locatie) != 4:
+    try:
         while True:
-            locatie = input("Dati locatia, locatia trebuie sa aiba 4 caractere: ")
-            if len(locatie) == 4:
+            id = input("Dati id-ul: ")
+            if len(id)>0:
+                if int(id)>0:
+                    break
+        id=int(id)
+        nume = input("Dati numele: ")
+        while True:
+            descriere = input("Dati descriere,ea nu poate fi nula: ")
+            if len(descriere) > 0:
                 break
-    return adaugaobiect(id, nume, descriere, pret, locatie, lista,listaundo,listaredo)
+        while True:
+            pret = input("Dati pretul,acesta trebuie sa fie pozitiv: ")
+            if len(pret) > 0:
+                if float(pret) >= 0:
+                    break
+        pret=float(pret)
+        locatie = input("Dati locatia: ")
+        if len(locatie) != 4:
+            while True:
+                locatie = input("Dati locatia, locatia trebuie sa aiba 4 caractere: ")
+                if len(locatie) == 4:
+                    break
+        return adaugaobiect(id, nume, descriere, pret, locatie, lista,listaundo,listaredo)
+    except ValueError as err:
+        print("Eroare:",err)
+    return lista
 
 
 def UIstregereobiect(lista,listaundo,listaredo):
-    id = int(input("Dati id-ul pentru obiectul pe care vreti sa il stergeti: "))
-    if id> getid(lista[len(lista)-1]):
-        while True:
-            id = int(input("Dati id-ul pentru obiectul pe care vreti sa il stergeti,acesta trebuie sa existe in lista: "))
-            if id <= getid(lista[len(lista)-1]):
-                break
-    return stergeobiect(id, lista,listaundo,listaredo)
+    try:
+        id = int(input("Dati id-ul pentru obiectul pe care vreti sa il stergeti: "))
+        if id> getid(lista[len(lista)-1]):
+            while True:
+                id = int(input("Dati id-ul pentru obiectul pe care vreti sa il stergeti,acesta trebuie sa existe in lista: "))
+                if id <= getid(lista[len(lista)-1]):
+                    break
+        return stergeobiect(id, lista,listaundo,listaredo)
+    except ValueError as err:
+        print("Eroare:",err)
+    return lista
 
 
 def UImodificaobiect(lista,listaundo,listaredo):
-    id = int(input("Dati id-ul pentru obiectul pe care vreti sa il modificati: "))
-    if id> getid(lista[len(lista)-1]):
+    try:
+        id = int(input("Dati id-ul pentru obiectul pe care vreti sa il modificati: "))
+        if id> getid(lista[len(lista)-1]):
+            while True:
+                id = int(input("Dati id-ul pentru obiectul pe care vreti sa il stergeti,acesta trebuie sa existe in lista: "))
+                if id <= getid(lista[len(lista)-1]):
+                    break
+        nume = input("Dati noul nume: ")
         while True:
-            id = int(input("Dati id-ul pentru obiectul pe care vreti sa il stergeti,acesta trebuie sa existe in lista: "))
-            if id <= getid(lista[len(lista)-1]):
+            descriere = input("Dati noua descriere,ea nu poate fi nenula: ")
+            if len(descriere) > 0:
                 break
-    nume = input("Dati noul nume: ")
-    while True:
-        descriere = input("Dati noua descriere,ea nu poate fi nenula: ")
-        if len(descriere) > 0:
-            break
-    while True:
-        pret = input("Dati pretul,acesta trebuie sa fie pozitiv: ")
-        if len(pret) > 0:
-            if float(pret) >= 0:
-                break
-    pret=float(pret)
-    locatie = input("Dati noua locatie: ")
-    if len(locatie) != 4:
         while True:
-            locatie = input("Dati noua locatie, locatia trebuie sa aiba 4 caractere: ")
-            if len(locatie) == 4:
-                break
-    return modificaobiect(id, nume, descriere, pret, locatie,lista,listaundo,listaredo)
+            pret = input("Dati pretul,acesta trebuie sa fie pozitiv: ")
+            if len(pret) > 0:
+                if float(pret) >= 0:
+                    break
+        pret=float(pret)
+        locatie = input("Dati noua locatie: ")
+        if len(locatie) != 4:
+            while True:
+                locatie = input("Dati noua locatie, locatia trebuie sa aiba 4 caractere: ")
+                if len(locatie) == 4:
+                    break
+        return modificaobiect(id, nume, descriere, pret, locatie,lista,listaundo,listaredo)
+    except ValueError as err:
+        print("Eroare:", err)
+    return lista
 
 def UImutarelocatie(lista,listaundo,listaredo):
-    locatieinitiala=input("Dati locatia din care mutati obiectele: ")
-    if not verificarelocatieexistenta(locatieinitiala,lista):
-        while True:
-            locatieinitiala=input("Dati locatia din care mutati obiectele, locatia trebuie sa fie una deja existenta in "
-                              "lista: ")
-            if verificarelocatieexistenta(locatieinitiala,lista):
-                break
-    locatiefinala=input("Dati locatia in care mutati obiectele: ")
-    if len(locatiefinala) != 4:
-        while True:
-            locatiefinala = input("Dati noua locatie, locatia trebuie sa aiba 4 caractere: ")
-            if len(locatiefinala) == 4:
-                break
-    return mutare_locatie(locatieinitiala,locatiefinala,lista,listaundo,listaredo)
+    try:
+        locatieinitiala=input("Dati locatia din care mutati obiectele: ")
+        if not verificarelocatieexistenta(locatieinitiala,lista):
+            while True:
+                locatieinitiala=input("Dati locatia din care mutati obiectele, locatia trebuie sa fie una deja existenta in "
+                                  "lista: ")
+                if verificarelocatieexistenta(locatieinitiala,lista):
+                    break
+        locatiefinala=input("Dati locatia in care mutati obiectele: ")
+        if len(locatiefinala) != 4:
+            while True:
+                locatiefinala = input("Dati noua locatie, locatia trebuie sa aiba 4 caractere: ")
+                if len(locatiefinala) == 4:
+                    break
+        return mutare_locatie(locatieinitiala,locatiefinala,lista,listaundo,listaredo)
+    except ValueError as err:
+        print("Eroare:", err)
+    return lista
 
 def UIconcatenare(lista,listaundo,listaredo):
-    sir=input("Dati sir pentru concatenare: ")
-    suma=int(input("Dati suma de la care vreti sa concatenati,nu si inclusiv: "))
-    return concatenare(sir,suma,lista,listaundo,listaredo)
+    try:
+        sir=input("Dati sir pentru concatenare: ")
+        suma=int(input("Dati suma de la care vreti sa concatenati,nu si inclusiv: "))
+        return concatenare(sir,suma,lista,listaundo,listaredo)
+    except ValueError as err:
+        print("Eroare:", err)
+    return lista
 
 def UIcelmaimare(lista):
     return celmaimare(lista)

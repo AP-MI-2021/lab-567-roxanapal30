@@ -15,9 +15,14 @@ returnare:listanoua
 
 
 def adaugaobiect(id, nume, descriere, pret, locatie, lista, listaundo, listaredo):
+    for obiect in lista:
+        if id== getid(obiect):
+            raise ValueError(f"Exista deja un obiect cu id-ul {id}")
     obiect = creeazaobiect(id, nume, descriere, pret, locatie)
     listaundo.append(lista)
     listaredo.clear()
+    if lista==None:
+        lista=[]
     return lista + [obiect]
 
 
